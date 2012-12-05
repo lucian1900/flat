@@ -20,9 +20,29 @@ def unflatten(flat):
         parts = k.split('.')
 
         level = nested
+        # Climb up to the right level
         for part in parts[:-1]:
             level = level[part]
 
         level[parts[-1]] = v
 
     return nested.to_dict()
+
+
+def is_dict(value):
+    return hasattr(value, '__getitem__')
+
+
+def flatten(nested, _levels=()):
+    flat = {}
+
+    for k, v in nested.iteritems():
+        levels = _levels + (k,)
+
+        if is_dict(v):
+            flat.update(flatten(v, levels))
+        else:
+            flat['.'.join(levels)] = v
+
+    return flat
+
