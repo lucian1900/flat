@@ -1,4 +1,4 @@
 Flat
 
 Utils to convert between nested dicts and flat dicts with dot-separated keys.
-Particularly useful for serialising nested dicts into urls and back.
+Particularly useful for serialising json into urls and back.

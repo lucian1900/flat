@@ -43,3 +43,10 @@ def test_roundtrip():
         'a.b.c': 3,
     }
     assert data == flatten(unflatten(data))
+
+
+if __name__ == '__main__':
+    # The tests are written primarily to be run by py.test, but this lets one
+    # run them without it
+    for func in [v for k, v in globals().items() if k.startswith('test_')]:
+        func()
